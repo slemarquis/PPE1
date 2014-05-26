@@ -24,7 +24,8 @@
         case 'connexion':
             {include('controleurs/c_connexion.php');break;}
         case 'gerer_joueurs':
-            {include("controleurs/c_joueurs.php");break;}
+            {
+                include("controleurs/c_gerer_joueurs.php");break;}
         case 'gerer_club':
             {include("controleurs/c_gerer_club.php");break;}
     }

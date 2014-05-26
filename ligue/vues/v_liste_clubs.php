@@ -1,5 +1,5 @@
 <?php
-    echo "hello world vue liste_clubs";
+    //echo "hello world vue liste_clubs";
     echo "<br />";
 	echo "<br />";
     echo "<br />";
