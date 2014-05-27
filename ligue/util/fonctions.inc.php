@@ -12,80 +12,17 @@ function initClub()
 		$_SESSION['clubs']= array();
 	}
 }
-/**
- * Supprime le panier
- *
- * Supprime la variable de type session 
- */
-function supprimerPanier()
-{
-	unset($_SESSION['produits']);
-}
-/**
- * Ajoute un produit au panier
- *
- * Teste si l'identifiant du produit est déjà dans la variable session 
- * ajoute l'identifiant à la variable de type session dans le cas où
- * où l'identifiant du produit n'a pas été trouvé
- * @param $idProduit : identifiant de produit
- * @param $q: qte de produit
- * @return vrai si le produit n'était pas dans la variable, faux sinon 
-*/
-function ajouterAuPanier($idProduit, $q)
-{
-	
-	$ok = true;
-	if(in_array($idProduit,$_SESSION['produits']))
-	{
-		$ok = false;
-	}
-	else
-	{
-		$_SESSION['produits'][]= $idProduit;
-        $_SESSION[$idProduit] = $q;
-	}
-	return $ok;
-}
-/**
- * Retourne les produits du panier
- *
- * Retourne le tableau des identifiants de produit
- * @return : le tableau
-*/
-function getLesIdProduitsDuPanier()
-{
-	return $_SESSION['produits'];
 
-}
-/**
- * Retourne le nombre de produits du panier
- *
- * Teste si la variable de session existe
- * et retourne le nombre d'éléments de la variable session
- * @return : le nombre 
-*/
-function nbProduitsDuPanier()
+
+function initJoueur()
 {
-	$n = 0;
-	if(isset($_SESSION['produits']))
-	{
-	$n = count($_SESSION['produits']);
-	}
-	return $n;
+    if(!isset($_SESSION['joueurs']))
+    {
+        $_SESSION['joueurs']= array();
+    }
 }
-/**
- * Retire un de produits du panier
- *
- * Recherche l'index de l'idProduit dans la variable session
- * et détruit la valeur à ce rang
- * @param $idProduit : identifiant de produit
- 
-*/
-function retirerDuPanier($idProduit)
-{
-		$index =array_search($idProduit,$_SESSION['produits']);
-		unset($_SESSION['produits'][$index]);
-}
+
+
 /**
  * teste si une chaîne a un format de code postal
  *

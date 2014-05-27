@@ -79,6 +79,30 @@ class PdoLigue
 	}
 
 
+    public function getLesJoueurs()
+    {
+        $req = "select * from joueurs";
+        $res = PdoLigue::$monPdo->query($req);
+        $lesLignes = $res->fetchall();
+        return $lesLignes;
+    }
+
+    public function getLeJoueur($idJ)
+    {
+        $req = "select * from joueurs where idJoueur='".$idJ."'";
+        $res = PdoLigue::$monPdo->query($req);
+        $leJoueur = $res->fetchall();
+        return $leJoueur;
+    }
+
+    public function UpdateJoueur($idJ)
+    {
+        $req = "update joueur set idJoueur='".$idJ." where idJoueur='".$idJ."'";
+        $res = PdoLigue::$monPdo->query($req);
+        return $res;
+    }
+
+
 
 }
 ?>

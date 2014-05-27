@@ -1,5 +1,5 @@
 <?php
-    initClub();
+    initJoueur();
     $action = $_REQUEST['action'];
     switch($action)
     {

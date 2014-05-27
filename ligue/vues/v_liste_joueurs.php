@@ -22,8 +22,8 @@
 
 
             <INPUT type="hidden" name ="uc" value = "gerer_joueur"/>
-            <INPUT type="hidden" name ="idClub" value = "<?php echo $idJ; ?>">
-            <INPUT type="hidden" name ="action" value = "modifier_club">
+            <INPUT type="hidden" name ="idJoueur" value = "<?php echo $idJ; ?>">
+            <INPUT type="hidden" name ="action" value = "modifier_joueur">
 
 
             <?php
