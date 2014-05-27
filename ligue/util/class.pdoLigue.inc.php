@@ -79,21 +79,7 @@ class PdoLigue
 	}
 
 
-    public function getLesJoueurs()
-    {
-        $req = "select * from joueurs";
-        $res = PdoLigue::$monPdo->query($req);
-        $lesLignes = $res->fetchall();
-        return $lesLignes;
-    }
 
-    public function getLeJoueur($idJ)
-    {
-        $req = "select * from joueurs where idJoueur='".$idJ."'";
-        $res = PdoLigue::$monPdo->query($req);
-        $leJoueur = $res->fetchall();
-        return $leJoueur;
-    }
 
     public function UpdateJoueur($idJ)
     {
@@ -102,6 +88,38 @@ class PdoLigue
         return $res;
     }
 
+
+    // Cette fonction va chercher les infos sur les joueurs dans la base de donnée, et stoque ce que la base de donnée renvoit dans un tableau
+    public function getLesJoueurs()
+    {
+        //requete SQL
+        $req="SELECT * FROM joueurs, categorie, clubs WHERE joueurs.idCateg = categorie.idCateg AND joueurs.idClub = clubs.idClub ORDER BY joueurs.nomJoueur";
+        //Traitement de la requete
+        $res = PdoLigue::$monPdo->query($req);
+        //Le résultat de la requete est stocké dans un tableau
+        $lesLignes = $res->fetchAll();
+        //La fonction renvoie le résultat
+        return $lesLignes;
+    }
+
+
+    public function getUnJoueur($id)
+    {
+        $req="SELECT * FROM joueur, clubs WHERE joueur.idClub=clubs.idClub AND idJou=".$id.";";
+        $res = PdoLigue::$monPdo->query($req);
+        $unJoueur = $res->fetchAll();
+
+        return $unJoueur;
+    }
+
+
+
+    public static function supprJoueur($id)
+    {
+        $req="DELETE FROM JOUEUR WHERE idJou='".$id."';";
+        $res = PdoLigue::$monPdo->query($req);
+
+    }
 
 
 }

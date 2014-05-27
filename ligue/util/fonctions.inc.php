@@ -22,7 +22,6 @@ function initJoueur()
     }
 }
 
-
 /**
  * teste si une chaîne a un format de code postal
  *

@@ -12,12 +12,22 @@
 
         case 'modifier_joueur':
         {
-            $leJoueur = $pdo->getLeJoueur($_GET['idJoueur']);
-            include("vues/v_modifier_joueur.php");
+            if (isset($_POST['formulaire']))
+            {
 
-            /*echo "hello world case modifer_joueur";
-            echo "<br />";*/
-            break;
+            }
+            else
+            {
+                $id=$_GET['id'];
+
+                $unJoueur=$pdo->getUnJoueur($id);
+                echo "unJoueur";
+                echo var_dump($unJoueur);
+                $lesClubs=$pdo->getLesClubs();
+                echo "<br>Les Clubs";
+                echo var_dump($lesClubs);
+                include("vues/v_modifier_joueurs.php");
+            }
         }
 
         case 'valideUpdate':
@@ -32,6 +42,9 @@
 
         case 'supprimerJoueur':
         {
+            if(isset($_POST['formulaire']))
+            $id=$_GET['id'];
+            $pdo->  supprJoueur($id);
             //$sup = $pdo->getSupLeJoueur($_GET['idJoueur']);
             //include("vues/v_supression_joueur.php");
             echo "Page en cours de réalisation, veuillez nous en excuser.";

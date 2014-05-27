@@ -12,7 +12,7 @@
 		
 		case 'modifier_club':
 		{
-			$leClub = $pdo->getLeClub($_GET['idClub']);
+			$leClub = $pdo->getLeClub($_GET['id']);
 			include("vues/v_modifier_club.php");
 			
 			/*echo "hello world case modifer_club";

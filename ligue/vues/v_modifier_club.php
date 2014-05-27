@@ -15,13 +15,11 @@
         $telC = $value['telClub'];
         $mailC = $value['mailClub'];
 
-		
+
+        echo "Modifier le club ".$idC."";
+
 ?>
-
-
-<?php echo "Modifier le club ".$idC."";?>
 <fieldset>
-			
 <?php
 		
 		echo "<table border='1'>";
@@ -95,13 +93,15 @@
 		echo "<br />";
 ?>
 
+    <input type="hidden" name="idClub" value="idClub=<?php echo $idC?>">
+
 		<br />
-		<a href="http://localhost/ligue/index.php?uc=gerer_club&idClub=<?php echo $idC?>&action=valideUpdate">VALIDER</a>
+		<a href="index.php?uc=gerer_club&action=valideUpdate"> VALIDER </a>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="http://localhost/ligue/index.php?uc=gerer_club&action=voirClub">RETOUR</a>
+		<a href="index.php?uc=gerer_club&action=voirClub">RETOUR</a>
 		</form>
 </fieldset>
-	
+
 <?php
     }
 ?>
