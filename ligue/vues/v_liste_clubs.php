@@ -4,7 +4,7 @@
 	echo "<br />";
     echo "<br />";
 
-echo "<fieldset>";
+    echo "<fieldset>";
     foreach($lesClubs as $value){
         $idC = $value['idClub'];
         $nomC = $value['nomClub'];
@@ -26,7 +26,7 @@ echo "<fieldset>";
             <INPUT type="hidden" name ="action" value = "modifier_club">
 			
 			
-<?php
+            <?php
 
 			echo "<input type='hidden' value='".$idC."'/>";
 			echo "<input type='hidden' value='".$nomC."'/>";
@@ -45,7 +45,7 @@ echo "<fieldset>";
 					echo "<td>".$mailC."</td>";
 				echo "</tr>";
 			echo "</table>";
-?>
+            ?>
 			<input type="submit" value="Modifier"/>
 			
 		</form>
