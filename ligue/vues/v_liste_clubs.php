@@ -19,10 +19,10 @@
                 <!--Affichage du résultat, ligne par ligne-->
                 <?php
                     echo $nom."</td><td>".$adresse."</td><td>".$cp."</td><td>".$ville."</td><td>".$telephone."</td><td>".$mail."</td>"
-                   // if(isset($_SESSION))
-                    //{
+                    // if(isset($_SESSION))
+                     //{
                         ."<td><a href='index.php?uc=gerer_club&action=modifier_club&id=".$id."'>Modifier</a></td> <td><a href='index.php?uc=supprimer&id=".$id."'>Supprimer</a>";
-                    //}
+                     //}
                 ?>
 
             </td>

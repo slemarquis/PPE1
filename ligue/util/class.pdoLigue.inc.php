@@ -71,23 +71,29 @@ class PdoLigue
 		return $leClub;
 	}
 	
-	public function UpdateClub($idC)
+	public function UpdateClub($idC,$nomC,$adresseC,$cpC,$villeC,$telC,$mailC)
 	{
-		$req = "update clubs set idClub='".$idC." where idClub='".$idC."'";
+		$req = "update clubs set nomClub='".$nomC."',adresseClub='".$adresseC."',cpClub='".$cpC."',villeClub='".$villeC."',telClub='".$telC."',mailClub='".$mailC."' where idClub='".$idC."'";
 		$res = PdoLigue::$monPdo->query($req);
 		return $res;
 	}
 
-
-
-
-    public function UpdateJoueur($idJ)
+    public static function supprClub($id)
     {
-        $req = "update joueur set idJoueur='".$idJ." where idJoueur='".$idJ."'";
+        $req="DELETE FROM clubs WHERE idClub='".$id."';";
+        $res = PdoLigue::$monPdo->query($req);
+
+    }
+
+
+
+
+    public function UpdateJoueur($idJ,$idC,$idCateg,$nomJ,$prenomJ,$adresseJ,$cpJ,$villeJ,$telJ,$mailJ)
+    {
+        $req = "update joueur set idJoueur='".$idJ.",idClub='".$idC."',idCateg='".$idCateg."',nomJoueur='".$nomJ."',prenomJoueur='".$prenomJ."',adresseClub='".$adresseJ."',cpClub='".$cpJ."',villeClub='".$villeJ."',telClub='".$telJ."',mailClub='".$mailJ."' where idJoueur='".$idJ."'";
         $res = PdoLigue::$monPdo->query($req);
         return $res;
     }
-
 
     // Cette fonction va chercher les infos sur les joueurs dans la base de donnée, et stoque ce que la base de donnée renvoit dans un tableau
     public function getLesJoueurs()
@@ -102,7 +108,6 @@ class PdoLigue
         return $lesLignes;
     }
 
-
     public function getUnJoueur($id)
     {
         $req="SELECT * FROM joueur, clubs WHERE joueur.idClub=clubs.idClub AND idJou=".$id.";";
@@ -111,8 +116,6 @@ class PdoLigue
 
         return $unJoueur;
     }
-
-
 
     public static function supprJoueur($id)
     {
