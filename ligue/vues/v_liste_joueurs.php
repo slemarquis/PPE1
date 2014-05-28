@@ -19,7 +19,7 @@
                 <!--Affichage du résultat, ligne par ligne-->
                 <?php
                     echo $prenom."</td><td>".$nom."</td><td>".$adresse."</td><td>".$telephone."</td><td>".$club."</td><td>".$categ."</td>";
-                    if(isset($_SESSION))
+                    if(isset($_SESSION['membre']))
                     {
                         "<td><a href='index.php?uc=modifier&id=".$id."'>Modifier</a></td> <td><a href='index.php?uc=supprimer&id=".$id."'>Supprimer</a>";
                     }
