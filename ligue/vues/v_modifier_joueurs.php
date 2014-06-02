@@ -22,6 +22,6 @@ $nombreClub=$lesClubs['NbClub'];
         }
 ?>
 </select>
-<input type="submit" value="modifier">
+<input type="submit" value="MODIFIER" name="modifier">
 
 </form>

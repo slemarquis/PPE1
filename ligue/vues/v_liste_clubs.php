@@ -4,13 +4,9 @@
     foreach($lesClubs as $i )
     {
         $nom=$i['nomClub'];
-        $adresse=$i['adresseClub'];
-        $cp=$i['cpClub'];
         $ville=$i['villeClub'];
         $telephone=$i['telClub'];
-        $mail=$i['mailClub'];
         $id=$i['idClub'];
-        echo var_dump($id);
 
         ?>
 
@@ -18,11 +14,11 @@
             <td>
                 <!--Affichage du résultat, ligne par ligne-->
                 <?php
-                    echo $nom."</td><td>".$adresse."</td><td>".$cp."</td><td>".$ville."</td><td>".$telephone."</td><td>".$mail."</td>";
-                    if(isset($_SESSION['membre']))
-                     {
-                        "<td><a href='index.php?uc=gerer_club&action=modifier_club&id=".$id."'>Modifier</a></td> <td><a href='index.php?uc=supprimer&id=".$id."'>Supprimer</a>";
-                     }
+                    echo "<input type=hidden name=idClub value='".$id."'>". $nom."</td><td>".$ville."</td><td>".$telephone."</td>"
+                    //if(isset($_SESSION['membre']))
+                     //{
+                        ."<td><a href='index.php?uc=gerer_club&action=modifier_club&id=".$id."'> MODIFIER </a></td> <td><a href='index.php?uc=gerer_club&action=supprimer_club&id=".$id."'> SUPPRIMER </a></td>";
+                     //}
                 ?>
 
             </td>

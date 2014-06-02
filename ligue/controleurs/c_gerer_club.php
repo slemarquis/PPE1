@@ -9,43 +9,57 @@
             include("vues/v_liste_clubs.php");
             break;
         }
-		
-		case 'modifier_club':
-		{
-			$leClub = $pdo->getLeClub($_GET['id']);
-			include("vues/v_modifier_club.php");
-			
-			/*echo "hello world case modifer_club";
-			echo "<br />";*/
-			break;
-		}
 
-        case 'valideUpdate':
+
+		case 'ajout_club':
+		{
+            if(isset($_REQUEST['ajout_club'])){
+                $leClub = $pdo->ajoutClub($_REQUEST['idClub'],$_REQUEST['nomClub'],$_REQUEST['adresseClub'],$_REQUEST['cpClub'],$_REQUEST['villeClub'],$_REQUEST['telClub'],$_REQUEST['mailClub']);
+                include('vues/v_ajout_club');
+
+            }else{
+                $lesClubs = $pdo->getLesClubs();
+                include("vues/v_liste_clubs.php");
+            }
+        }
+
+
+        case 'modifier_club' :
         {
+
             if(isset($_REQUEST['UpdateClub']))
             {
-                $res = $pdo->UpdateClub($_REQUEST['idClub'],$_REQUEST['nomClub'],$_REQUEST['adresseClub'],$_REQUEST['cpClub'],$_REQUEST['villeClub'],$_REQUEST['telClub'],$_REQUEST['mailClub']);
-                echo "Club mis à jour !";
+                $idC = $_REQUEST['idClub'];
+                $nomC = $_REQUEST['nomClub'];
+                $villeC = $_REQUEST['villeClub'];
+                $telC = $_REQUEST['telClub'];
 
+                $res = $pdo->UpdateClub($idC,$nomC,$villeC,$telC);
+                echo "Club mis à jour !";
+                break;
+
+            }else{
+                if(isset($_REQUEST['Retour'])){
+                    echo var_dump($_REQUEST);
+                    header("Location: http://127.0.0.1/PPE1/ligue/index.php?uc=gerer_club&action=voirClub");
+                    break;
+                }else{
+                    $idC = $_GET['id'];
+                    $leClub = $pdo->getLeClub($idC);
+                    include("vues/v_modifier_club.php");
+                }
             }
-            $lesClubs = $pdo->getLesClubs();
-            include("vues/v_liste_clubs.php");
-            //echo "truc muche";
             break;
         }
 
-		case 'supprimerClub':
+
+        case 'supprimerClub':
 		{
 			//$sup = $pdo->SupLeClub($_REQUEST['idClub']);
 			//include("vues/v_supression_club.php");
-			echo "Page en cours de réalisation, veuillez nous en excuser.";
-			echo "<br />";
-			echo "Merci.";
 			break;
 		}
 		
 	}
-    
-
 
 ?>

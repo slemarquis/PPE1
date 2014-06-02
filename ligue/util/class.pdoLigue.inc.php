@@ -71,9 +71,9 @@ class PdoLigue
 		return $leClub;
 	}
 	
-	public function UpdateClub($idC,$nomC,$adresseC,$cpC,$villeC,$telC,$mailC)
+	public function UpdateClub($idC,$nomC,$villeC,$telC)
 	{
-		$req = "update clubs set nomClub='".$nomC."',adresseClub='".$adresseC."',cpClub='".$cpC."',villeClub='".$villeC."',telClub='".$telC."',mailClub='".$mailC."' where idClub='".$idC."'";
+		$req = "update clubs set nomClub='".$nomC."',villeClub='".$villeC."',telClub='".$telC."' where idClub='".$idC."'";
 		$res = PdoLigue::$monPdo->query($req);
 		return $res;
 	}
@@ -122,6 +122,13 @@ class PdoLigue
         $req="DELETE FROM JOUEUR WHERE idJou='".$id."';";
         $res = PdoLigue::$monPdo->query($req);
 
+    }
+
+
+    public function se_connecter($idM,$mdpM)
+    {
+        $req="SELECT login,mdp FROM membres where idMembre='".$idM."'";
+        //if($idM == )
     }
 
 

@@ -21,19 +21,20 @@ label {
 
 input {
 	margin-left: 1%;
-	width: 30%;
+	width: 100%;
 	border: #CCC 1px solid;
 }
 
 input:hover, #ent input:focus {
-	border: #999 1px solid;
+	border: #999 2px solid;
 	background-color: #DDEEFF;
 }
 
 input[type="submit"]
 {
-	border: #DDEEFF 1px solid;
-	width: 30%;
+	border: #DDEEFF 2px solid;
+    font-weight: bold;
+	width: 100%;
 }
 .erreur{ 
    background-color:rgb(237,210,229);
