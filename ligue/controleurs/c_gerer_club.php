@@ -19,6 +19,7 @@
                 $telC=$_REQUEST['telClub'];
 
                 $pdo->Ajouter_Club($nomC,$villeC,$telC);
+                include('vues/v_ajout_club.php');
 
             }else{
                 if(isset($_REQUEST['Retour'])){
@@ -33,6 +34,7 @@
 
                 break;
             }
+            break;
         }
 
         case 'modifier_club':
@@ -45,7 +47,9 @@
 
                 $res = $pdo->UpdateClub($idC,$nomC,$villeC,$telC);
                 echo "Club mis à jour !";
-                break;
+
+                $lesClubs = $pdo->getLesClubs();
+                include("vues/v_liste_clubs.php");
 
             }else{
                 if(isset($_REQUEST['Retour'])){
@@ -64,10 +68,14 @@
         }
 
 
-        case 'supprimerClub':
+        case 'supprimer_club':
 		{
-			//$sup = $pdo->SupLeClub($_REQUEST['idClub']);
-			//include("vues/v_supression_club.php");
+			$idClub = $_GET['id'];
+            $sup = $pdo->SupLeClub($idClub);
+            echo "Club supprimé !";
+
+            $lesClubs = $pdo->getLesClubs();
+            include("vues/v_liste_clubs.php");
 			break;
 		}
 		

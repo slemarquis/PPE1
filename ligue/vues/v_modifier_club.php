@@ -16,7 +16,7 @@
 
         ?>
         <fieldset>
-            <form name="FRM_modif_club" method="POST" action="index.php?uc=gerer_club&action=modifier_club">
+            <form method="POST" action="index.php?uc=gerer_club&action=modifier_club">
                 <?php
 
                     echo "<table border='1'>";

@@ -78,9 +78,9 @@ class PdoLigue
 		return $res;
 	}
 
-    public static function supprClub($id)
+    public function SupLeClub($idClub)
     {
-        $req="DELETE FROM clubs WHERE idClub='".$id."';";
+        $req="DELETE FROM clubs WHERE idClub='".$idClub."';";
         $res = PdoLigue::$monPdo->query($req);
 
     }
@@ -92,9 +92,10 @@ class PdoLigue
         PdoLigue::$monPdo->query($req);
 
     }
-// test !
 
-// ????
+
+
+
 
     public function UpdateJoueur($idJ,$idC,$idCateg,$nomJ,$prenomJ,$adresseJ,$cpJ,$villeJ,$telJ,$mailJ)
     {
