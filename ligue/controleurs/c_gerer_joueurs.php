@@ -32,7 +32,7 @@
 
         case 'valideUpdate':
         {
-            $res = $pdo->UpdateJoueur($_REQUEST['idJoueur'],$_REQUEST['idClub'],$_REQUEST['idCateg'],$_REQUEST['nomJoueur'],$_REQUEST['prenomJoueur'],$_REQUEST['adresseJoueur'],$_REQUEST['cpJoueur'],$_REQUEST['villeJoueur'],$_REQUEST['telJoueur'],$_REQUEST['mailJoueur']);
+            $res = $pdo->UpdateJoueur($_REQUEST['idJoueur'],$_REQUEST['idClub'],$_REQUEST['idCateg'],$_REQUEST['nomJoueur'],$_REQUEST['prenomJoueur'],$_REQUEST['villeJoueur'],$_REQUEST['telJoueur']);
             echo "Joueur mis à jour !";
             $lesJoueurs = $pdo->getLesJoueurs();
             include("vues/v_liste_joueurs.php");

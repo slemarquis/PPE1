@@ -28,3 +28,7 @@
     }
     ?>
 </table>
+<br />
+<form name=ajout_club method=POST action=index.php?uc=gerer_club&action=ajout_club>
+    <input type=submit value="Ajouter un Club" name=ajout_club>
+</form>

@@ -5,7 +5,6 @@
     {
         $nom=$i['nomJoueur'];
         $prenom=$i['prenomJoueur'];
-        $adresse=$i['adresseJoueur'];
         $telephone=$i['telJoueur'];
         $club=$i['nomClub'];
         $categ=$i['NomCateg'];
@@ -18,10 +17,10 @@
             <td>
                 <!--Affichage du résultat, ligne par ligne-->
                 <?php
-                    echo $prenom."</td><td>".$nom."</td><td>".$adresse."</td><td>".$telephone."</td><td>".$club."</td><td>".$categ."</td>";
+                    echo $prenom."</td><td>".$nom."</td><td>".$telephone."</td><td>".$club."</td><td>".$categ."</td>";
                     if(isset($_SESSION['membre']))
                     {
-                        "<td><a href='index.php?uc=modifier&id=".$id."'>Modifier</a></td> <td><a href='index.php?uc=supprimer&id=".$id."'>Supprimer</a>";
+                        "<td><a href='index.php?uc=gerer_joueurs&action=modifier_joueur&id=".$id."'>Modifier</a></td> <td><a href='index.php?uc=supprimer&id=".$id."'>Supprimer</a>";
                     }
                 ?>
 

@@ -65,7 +65,7 @@ class PdoLigue
 	
 	public function getLeClub($idC)
 	{
-		$req = "select * from clubs where idClub='".$idC."'";
+		$req = "select * from clubs where idClub='".$idC."';";
 		$res = PdoLigue::$monPdo->query($req);
 		$leClub = $res->fetchall();
 		return $leClub;
@@ -73,7 +73,7 @@ class PdoLigue
 	
 	public function UpdateClub($idC,$nomC,$villeC,$telC)
 	{
-		$req = "update clubs set nomClub='".$nomC."',villeClub='".$villeC."',telClub='".$telC."' where idClub='".$idC."'";
+		$req = "update clubs set nomClub='".$nomC."',villeClub='".$villeC."',telClub='".$telC."' where idClub='".$idC."';";
 		$res = PdoLigue::$monPdo->query($req);
 		return $res;
 	}
@@ -85,12 +85,20 @@ class PdoLigue
 
     }
 
+    public static function Ajouter_Club($nom,$ville,$tel)
+    {
+        $req = "INSERT INTO clubs (idClub, nomClub, villeClub, telClub) VALUES ('','".$nom."','".$ville."','".$tel."');";
+        echo var_dump($_REQUEST);
+        PdoLigue::$monPdo->query($req);
 
+    }
+// test !
 
+// ????
 
     public function UpdateJoueur($idJ,$idC,$idCateg,$nomJ,$prenomJ,$adresseJ,$cpJ,$villeJ,$telJ,$mailJ)
     {
-        $req = "update joueur set idJoueur='".$idJ.",idClub='".$idC."',idCateg='".$idCateg."',nomJoueur='".$nomJ."',prenomJoueur='".$prenomJ."',adresseClub='".$adresseJ."',cpClub='".$cpJ."',villeClub='".$villeJ."',telClub='".$telJ."',mailClub='".$mailJ."' where idJoueur='".$idJ."'";
+        $req = "update joueur set idJoueur='".$idJ.",idClub='".$idC."',idCateg='".$idCateg."',nomJoueur='".$nomJ."',prenomJoueur='".$prenomJ."',villeClub='".$villeJ."',telClub='".$telJ."' where idJoueur='".$idJ."';";
         $res = PdoLigue::$monPdo->query($req);
         return $res;
     }
@@ -127,8 +135,8 @@ class PdoLigue
 
     public function se_connecter($idM,$mdpM)
     {
-        $req="SELECT login,mdp FROM membres where idMembre='".$idM."'";
-        //if($idM == )
+        $req="SELECT login,mdp FROM membres where idMembre='".$idM."';";
+        //if($idM == $req[0] && $mdpM == $req[1])
     }
 
 
