@@ -1,60 +1,88 @@
 <?php
-    initJoueur();
-    $action = $_REQUEST['action'];
-    switch($action)
+initJoueur();
+$action = $_REQUEST['action'];
+switch($action)
+{
+    case 'voirJoueur':
     {
-        case 'voirJoueur':
-        {
-            $lesJoueurs = $pdo->getLesJoueurs();
-            include("vues/v_liste_joueurs.php");
-            break;
-        }
-
-        case 'modifier_joueur':
-        {
-            if (isset($_POST['formulaire']))
-            {
-
-            }
-            else
-            {
-                $id=$_GET['id'];
-
-                $unJoueur=$pdo->getUnJoueur($id);
-                echo "unJoueur";
-                echo var_dump($unJoueur);
-                $lesClubs=$pdo->getLesClubs();
-                echo "<br>Les Clubs";
-                echo var_dump($lesClubs);
-                include("vues/v_modifier_joueurs.php");
-            }
-        }
-
-        case 'valideUpdate':
-        {
-            $res = $pdo->UpdateJoueur($_REQUEST['idJoueur'],$_REQUEST['idClub'],$_REQUEST['idCateg'],$_REQUEST['nomJoueur'],$_REQUEST['prenomJoueur'],$_REQUEST['villeJoueur'],$_REQUEST['telJoueur']);
-            echo "Joueur mis à jour !";
-            $lesJoueurs = $pdo->getLesJoueurs();
-            include("vues/v_liste_joueurs.php");
-            //echo "truc muche";
-            break;
-        }
-
-        case 'supprimerJoueur':
-        {
-            if(isset($_POST['formulaire']))
-            $id=$_GET['id'];
-            $pdo->  supprJoueur($id);
-            //$sup = $pdo->getSupLeJoueur($_GET['idJoueur']);
-            //include("vues/v_supression_joueur.php");
-            echo "Page en cours de réalisation, veuillez nous en excuser.";
-            echo "<br />";
-            echo "Merci.";
-            break;
-        }
-
+        $lesJoueurs = $pdo->getLesJoueurs();
+        include("vues/v_liste_joueurs.php");
+        break;
     }
 
 
+    case 'ajout_joueur':
+    {
+        if(isset($_REQUEST['Ajouter'])){
+            $prenomJ=$_REQUEST['prenomJoueur'];
+            $nomJ=$_REQUEST['nomJoueur'];
+            $villeJ=$_REQUEST['villeJoueur'];
+            $telJ=$_REQUEST['telJoueur'];
+
+            //$pdo->Ajouter_Joueur($prenomJ,$nomJ,$villeJ,$telJ);
+            include('vues/v_ajout_joueur.php');
+
+        }else{
+            if(isset($_REQUEST['Retour'])){
+                header("Location: http://127.0.0.1/PPE1/ligue/index.php?uc=gerer_joueurs&action=voirJoueur");
+                break;
+
+            }else{
+                include('vues/v_ajout_joueur.php');
+                break;
+
+            }
+
+            break;
+        }
+        break;
+    }
+
+    case 'modifier_joueur':
+    {
+        if(isset($_REQUEST['UpdateJoueur'])){
+            $idJ = $_REQUEST['idJoueur'];
+            $idC = $_REQUEST['idClub'];
+            $idCateg = $_REQUEST['idCateg'];
+            $nomJ = $_REQUEST['nomJoueur'];
+            $prenomJ = $_REQUEST['prenomJoueur'];
+            $villeJ = $_REQUEST['villeJoueur'];
+            $telJ = $_REQUEST['telJoueur'];
+
+            $res = $pdo->UpdateJoueur($idJ,$idC,$idCateg,$nomJ,$prenomJ,$villeJ,$telJ);
+            echo "Joueur mis à jour !";
+
+            $lesJoueurs = $pdo->getLesJoueurs();
+            include("vues/v_liste_joueurs.php");
+
+        }else{
+            if(isset($_REQUEST['Retour'])){
+                header("Location: http://127.0.0.1/PPE1/ligue/index.php?uc=gerer_joueurs&action=voirJoueur");
+                break;
+
+            }else{
+                $idJ = $_GET['id'];
+                $leJoueur = $pdo->getLeJoueur($idJ);
+                include("vues/v_modifier_joueurs.php");
+                break;
+
+            }
+        }
+        break;
+    }
+
+
+    case 'supprimer_joueur':
+    {
+        $idJoueur = $_GET['id'];
+        $sup = $pdo->SupLeJoueur($idJoueur);
+        echo "Joueur supprimé !";
+
+        $lesJoueurs = $pdo->getLesJoueurs();
+        include("vues/v_liste_joueurs.php");
+        break;
+    }
+
+}
 
 ?>

@@ -65,7 +65,7 @@ class PdoLigue
 	
 	public function getLeClub($idC)
 	{
-		$req = "select * from clubs where idClub='".$idC."';";
+		$req = "SELECT * FROM clubs where idClub='".$idC."';";
 		$res = PdoLigue::$monPdo->query($req);
 		$leClub = $res->fetchall();
 		return $leClub;
@@ -73,9 +73,10 @@ class PdoLigue
 	
 	public function UpdateClub($idC,$nomC,$villeC,$telC)
 	{
-		$req = "update clubs set nomClub='".$nomC."',villeClub='".$villeC."',telClub='".$telC."' where idClub='".$idC."';";
-		$res = PdoLigue::$monPdo->query($req);
-		return $res;
+		$req = "UPDATE clubs SET nomClub='".$nomC."',villeClub='".$villeC."',telClub='".$telC."' WHERE idClub='".$idC."';";
+        $res = PdoLigue::$monPdo->query($req);
+        return $res;
+
 	}
 
     public function SupLeClub($idClub)
@@ -88,6 +89,51 @@ class PdoLigue
     public static function Ajouter_Club($nom,$ville,$tel)
     {
         $req = "INSERT INTO clubs (idClub, nomClub, villeClub, telClub) VALUES ('','".$nom."','".$ville."','".$tel."');";
+        PdoLigue::$monPdo->query($req);
+
+    }
+
+
+
+
+
+    public function UpdateJoueur($idJ,$idC,$idCateg,$nomJ,$prenomJ,$villeJ,$telJ)
+    {
+        $req = "UPDATE joueurs SET idClub='".$idC."',idCateg='".$idCateg."',nomJoueur='".$nomJ."',prenomJoueur='".$prenomJ."',villeJoueur='".$villeJ."',telJoueur='".$telJ."' WHERE idJoueur='".$idJ."';";
+        $res = PdoLigue::$monPdo->query($req);
+        return $res;
+
+    }
+
+    // Cette fonction va chercher les infos sur les joueurs dans la base de donnée, et stoque ce que la base de donnée renvoit dans un tableau
+    public function getLesJoueurs()
+    {
+        $req="SELECT * FROM joueurs,categorie,clubs WHERE joueurs.idCateg=categorie.idCateg AND joueurs.idClub=clubs.idClub ORDER BY joueurs.nomJoueur";
+        $res = PdoLigue::$monPdo->query($req);
+        $lesLignes = $res->fetchAll();
+        return $lesLignes;
+
+    }
+
+    public function getLeJoueur($idJ)
+    {
+        $req = "SELECT * FROM joueurs where idJoueur='".$idJ."';";
+        $res = PdoLigue::$monPdo->query($req);
+        $unJoueur = $res->fetchall();
+        return $unJoueur;
+
+    }
+
+    public static function SupLeJoueur($id)
+    {
+        $req="DELETE FROM JOUEUR WHERE idJoueur='".$id."';";
+        $res = PdoLigue::$monPdo->query($req);
+
+    }
+
+    public static function Ajouter_Joueur($prenom,$nom,$ville,$tel)
+    {
+        $req = "INSERT INTO joueurs (idJoueur, idClub, nomJoueur, prenomJoueur, villeJoueur, telClub) VALUES ('', '', '".$nom."','".$prenom."','".$ville."','".$tel."');";
         echo var_dump($_REQUEST);
         PdoLigue::$monPdo->query($req);
 
@@ -97,47 +143,12 @@ class PdoLigue
 
 
 
-    public function UpdateJoueur($idJ,$idC,$idCateg,$nomJ,$prenomJ,$adresseJ,$cpJ,$villeJ,$telJ,$mailJ)
-    {
-        $req = "update joueur set idJoueur='".$idJ.",idClub='".$idC."',idCateg='".$idCateg."',nomJoueur='".$nomJ."',prenomJoueur='".$prenomJ."',villeClub='".$villeJ."',telClub='".$telJ."' where idJoueur='".$idJ."';";
-        $res = PdoLigue::$monPdo->query($req);
-        return $res;
-    }
-
-    // Cette fonction va chercher les infos sur les joueurs dans la base de donnée, et stoque ce que la base de donnée renvoit dans un tableau
-    public function getLesJoueurs()
-    {
-        //requete SQL
-        $req="SELECT * FROM joueurs, categorie, clubs WHERE joueurs.idCateg = categorie.idCateg AND joueurs.idClub = clubs.idClub ORDER BY joueurs.nomJoueur";
-        //Traitement de la requete
-        $res = PdoLigue::$monPdo->query($req);
-        //Le résultat de la requete est stocké dans un tableau
-        $lesLignes = $res->fetchAll();
-        //La fonction renvoie le résultat
-        return $lesLignes;
-    }
-
-    public function getUnJoueur($id)
-    {
-        $req="SELECT * FROM joueur, clubs WHERE joueur.idClub=clubs.idClub AND idJou=".$id.";";
-        $res = PdoLigue::$monPdo->query($req);
-        $unJoueur = $res->fetchAll();
-
-        return $unJoueur;
-    }
-
-    public static function supprJoueur($id)
-    {
-        $req="DELETE FROM JOUEUR WHERE idJou='".$id."';";
-        $res = PdoLigue::$monPdo->query($req);
-
-    }
-
 
     public function se_connecter($idM,$mdpM)
     {
         $req="SELECT login,mdp FROM membres where idMembre='".$idM."';";
         //if($idM == $req[0] && $mdpM == $req[1])
+        
     }
 
 
